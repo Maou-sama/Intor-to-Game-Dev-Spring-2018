@@ -1,14 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
 
     private Rigidbody2D rb2d;
     private SpriteRenderer sr;
-    [Range(0, 1)] [SerializeField] private float crouchSpeed = 0.5f;
+    [Range(0, 1)] public float crouchSpeed = 0.5f;
+    public Transform groundCheck;
+    public LayerMask groundLayer;
 
+    private GameObject door;
+    private Vector2 doorPosition;
+
+    public bool openDoor;
     public Sprite[] sprites;
     public float speed;
     public float jumpForce;
@@ -23,11 +30,28 @@ public class Movement : MonoBehaviour
         onGround = false;
         sr.sprite = sprites[0];
         crouching = false;
+        door = GameObject.FindGameObjectWithTag("Door");
+        doorPosition = door.transform.position;
+    }
+
+    void FixedUpdate()
+    {
+        onGround = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.2f, groundLayer);
+        if(colliders.Length >= 1)
+        {
+            onGround = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (openDoor)
+        {
+            door.transform.position = Vector2.Lerp(doorPosition, doorPosition + new Vector2(0, 5), 3);
+        }
+
         //Change to crouch animation if pressed C
         if (onGround)
         {
@@ -46,30 +70,31 @@ public class Movement : MonoBehaviour
 
         else
         {
-            sr.sprite = sprites[0];
+            sr.sprite = sprites[2];
             crouching = false;
         }
 
         rb2d.velocity = (crouching ? new Vector2(Input.GetAxis("Horizontal") * speed * crouchSpeed, rb2d.velocity.y) : new Vector2(Input.GetAxis("Horizontal") * speed, rb2d.velocity.y));
         if (onGround && Input.GetKeyDown(KeyCode.Space))
         {
+            sr.sprite = sprites[2];
             rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if(collision.gameObject.tag == "Obstacles")
         {
-            onGround = true;
+            SceneManager.LoadScene(0);
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if(collision.gameObject.tag == "Switch")
         {
-            onGround = false;
+            openDoor = true;
         }
     }
 }
