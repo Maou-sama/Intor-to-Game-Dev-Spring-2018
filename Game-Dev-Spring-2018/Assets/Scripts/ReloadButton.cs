@@ -7,6 +7,6 @@ public class ReloadButton : MonoBehaviour
 
     public void Reload()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

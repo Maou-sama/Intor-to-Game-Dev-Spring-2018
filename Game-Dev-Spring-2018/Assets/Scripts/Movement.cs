@@ -12,10 +12,6 @@ public class Movement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
-    private GameObject door;
-    private Vector2 doorPosition;
-
-    public bool openDoor;
     public Sprite[] sprites;
     public float speed;
     public float jumpForce;
@@ -30,8 +26,6 @@ public class Movement : MonoBehaviour
         onGround = false;
         sr.sprite = sprites[0];
         crouching = false;
-        door = GameObject.FindGameObjectWithTag("Door");
-        doorPosition = door.transform.position;
     }
 
     void FixedUpdate()
@@ -47,11 +41,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (openDoor)
-        {
-            door.transform.position = Vector2.Lerp(doorPosition, doorPosition + new Vector2(0, 5), 3);
-        }
-
+        
         //Change to crouch animation if pressed C
         if (onGround)
         {
@@ -80,21 +70,13 @@ public class Movement : MonoBehaviour
             sr.sprite = sprites[2];
             rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
-    }
+    }   
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Obstacles")
         {
             SceneManager.LoadScene(0);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Switch")
-        {
-            openDoor = true;
         }
     }
 }
