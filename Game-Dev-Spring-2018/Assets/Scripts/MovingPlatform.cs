@@ -6,11 +6,15 @@ public class MovingPlatform : MonoBehaviour
     public bool startMoving;
     public float speed;
     public bool moveUp;
+    public float moveDistance;
+
+    private float baseY;
 
     // Use this for initialization
     void Start()
     {
         startMoving = false;
+        baseY = transform.position.y;
     }
 
     // Update is called once per frame
@@ -18,11 +22,11 @@ public class MovingPlatform : MonoBehaviour
     {
         if (startMoving)
         {
-            if (transform.position.y <= -3.14f)
+            if (transform.position.y <= baseY)
             {
                 moveUp = true;
             }
-            if (transform.position.y >= 25.0f)
+            if (transform.position.y >= baseY + moveDistance)
             {
                 moveUp = false;
             }

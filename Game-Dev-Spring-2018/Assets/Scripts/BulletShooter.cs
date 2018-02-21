@@ -5,6 +5,8 @@ public class BulletShooter : MonoBehaviour
 {
     public GameObject bullet;
     public float destroyTime;
+    public float bulletSpeed;
+    public float spawnTime;
 
     private bool startShooting;
     // Use this for initialization
@@ -25,9 +27,10 @@ public class BulletShooter : MonoBehaviour
 
     IEnumerator ShootBullet(GameObject bullet)
     {
-        yield return new WaitForSeconds(2.5f);
         GameObject clone = Instantiate(bullet, transform.position, Quaternion.identity);
         clone.GetComponent<Bullet>().destroyTime = destroyTime;
+        clone.GetComponent<Bullet>().bulletSpeed = bulletSpeed;
+        yield return new WaitForSeconds(spawnTime);
         StartCoroutine(ShootBullet(bullet));
     }
 }

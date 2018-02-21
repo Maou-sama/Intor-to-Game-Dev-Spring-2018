@@ -744,6 +744,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1316463967706368, guid: c6b70842ce7d79b479fbf4cbee7be1f4, type: 2}
   destroyTime: 0.6
+  bulletSpeed: -0.5
+  spawnTime: 2.5
 --- !u!1 &1031187723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,21 +1219,6 @@ Prefab:
     - target: {fileID: 4259000137198038, guid: e49d005c677d21c48abf9b710035dc9b, type: 2}
       propertyPath: m_RootOrder
       value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 212048812175574964, guid: e49d005c677d21c48abf9b710035dc9b,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0.014381486
-      objectReference: {fileID: 0}
-    - target: {fileID: 212048812175574964, guid: e49d005c677d21c48abf9b710035dc9b,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0.25747824
-      objectReference: {fileID: 0}
-    - target: {fileID: 212048812175574964, guid: e49d005c677d21c48abf9b710035dc9b,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0.2794118
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e49d005c677d21c48abf9b710035dc9b, type: 2}
@@ -1823,6 +1810,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1316463967706368, guid: f815080afa2368145be2d3d2271ce1b3, type: 2}
   destroyTime: 0.6
+  bulletSpeed: 0.5
+  spawnTime: 2.5
 --- !u!1001 &2005689820
 Prefab:
   m_ObjectHideFlags: 0
