@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoorSwitch : MonoBehaviour
+public class DoorSwitch2 : MonoBehaviour
 {
     public GameObject door;
     public bool openDoor;
-    public bool moveDown;
 
     private void Start()
     {
@@ -19,21 +18,13 @@ public class DoorSwitch : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1);
             Vector2 doorPosition = door.transform.position;
-            if (moveDown)
-            {
-                LeanTween.move(door, doorPosition + new Vector2(0, -5), 3.0f);
-            }
-            else
-            {
-                LeanTween.move(door, doorPosition + new Vector2(0, 5), 3.0f);
-            }
-            openDoor = false;
+            door.transform.position = Vector2.Lerp(doorPosition, doorPosition - new Vector2(0, 5), 3.0f);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             openDoor = true;
         }

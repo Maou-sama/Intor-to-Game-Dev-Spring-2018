@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     [Range(0, 1)] public float crouchSpeed = 0.5f;
     public Transform groundCheck;
     public LayerMask groundLayer;
+    public BoxCollider2D c2d;
 
     public Sprite[] sprites;
     public float speed;
@@ -18,11 +19,17 @@ public class Movement : MonoBehaviour
     public bool onGround;
     public bool crouching;
 
+    private Vector3 standColliderSize;
+    private Vector3 crouchColliderSize;
+
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        c2d = GetComponent<BoxCollider2D>();
+        standColliderSize = c2d.transform.localScale;
+        crouchColliderSize = new Vector3(c2d.transform.localScale.x * 2.0f, c2d.transform.localScale.y * 0.5f, c2d.transform.localScale.z);
         onGround = false;
         sr.sprite = sprites[0];
         crouching = false;
@@ -41,7 +48,17 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        /*
+        if (crouching)
+        {
+            c2d.transform.localScale = crouchColliderSize;
+        }
+
+        else
+        {
+            c2d.transform.localScale = standColliderSize;
+        }
+        */
         //Change to crouch animation if pressed C
         if (onGround)
         {
@@ -70,13 +87,31 @@ public class Movement : MonoBehaviour
             sr.sprite = sprites[2];
             rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
+
+        if(Input.GetAxis("Horizontal") < 0)
+        {
+            sr.flipX = true;
+        }
+
+        else if(Input.GetAxis("Horizontal") > 0)
+        {
+            sr.flipX = false;
+        }
     }   
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Obstacles")
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

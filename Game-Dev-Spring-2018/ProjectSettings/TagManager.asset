@@ -8,6 +8,7 @@ TagManager:
   - Obstacles
   - Switch
   - Door
+  - Bullet
   layers:
   - Default
   - TransparentFX
