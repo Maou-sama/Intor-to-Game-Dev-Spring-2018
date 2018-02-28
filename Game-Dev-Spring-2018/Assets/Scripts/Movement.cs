@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
     public float jumpForce;
     public bool onGround;
     public bool crouching;
+    private bool canCrouch = true;
 
     private Vector3 standColliderSize;
     private Vector3 crouchColliderSize;
@@ -28,8 +29,8 @@ public class Movement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         c2d = GetComponent<BoxCollider2D>();
-        standColliderSize = c2d.transform.localScale;
-        crouchColliderSize = new Vector3(c2d.transform.localScale.x * 2.0f, c2d.transform.localScale.y * 0.5f, c2d.transform.localScale.z);
+        //standColliderSize = c2d.transform.localScale;
+        //crouchColliderSize = new Vector3(c2d.transform.localScale.x * 2.0f, c2d.transform.localScale.y * 0.5f, c2d.transform.localScale.z);
         onGround = false;
         sr.sprite = sprites[0];
         crouching = false;
@@ -48,28 +49,30 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         if (crouching)
         {
-            c2d.transform.localScale = crouchColliderSize;
+            c2d.enabled = false;
         }
 
         else
         {
-            c2d.transform.localScale = standColliderSize;
+            c2d.enabled = true;
         }
-        */
+        
         //Change to crouch animation if pressed C
         if (onGround)
         {
-            if (Input.GetKey(KeyCode.C))
+            if (Input.GetKey(KeyCode.C) && canCrouch)
             {
+                StartCoroutine(CrouchTimer());
                 sr.sprite = sprites[1];
                 crouching = true;
             }
 
             else
             {
+                canCrouch = true;
                 sr.sprite = sprites[0];
                 crouching = false;
             }
@@ -99,6 +102,15 @@ public class Movement : MonoBehaviour
         }
     }   
 
+    IEnumerator CrouchTimer()
+    {
+        yield return new WaitForSeconds(1.5f);
+        if (canCrouch == true)
+        {
+            canCrouch = false;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Obstacles")
@@ -125,7 +137,17 @@ public class Movement : MonoBehaviour
     {
         if(collision.gameObject.tag == "Bullet")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (!crouching)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
+        if(collision.gameObject.tag == "Enemy")
+        {
+            if (!crouching)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 }

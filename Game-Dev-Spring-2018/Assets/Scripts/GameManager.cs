@@ -27,16 +27,32 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift)){
-            if (Input.GetKeyDown(KeyCode.Q))
+        if (SceneManager.GetActiveScene().name == "GameOver")
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                Debug.Log("Load Prev Level");
-                LoadPreviousScene();
+                if (Input.GetKeyDown(KeyCode.N))
+                {
+                    SceneManager.LoadScene("MainMenu");
+                    Destroy(gameObject);
+                }
             }
-            if (Input.GetKeyDown(KeyCode.E))
+        }
+
+        else
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                Debug.Log("Load Next Level");
-                LoadNextScene();
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    Debug.Log("Load Prev Level");
+                    LoadPreviousScene();
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("Load Next Level");
+                    LoadNextScene();
+                }
             }
         }
     }
