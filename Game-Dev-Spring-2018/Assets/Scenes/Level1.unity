@@ -411,6 +411,16 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.19250004
       objectReference: {fileID: 0}
+    - target: {fileID: 114349156355770404, guid: 74ba5cc546a448547af9e16fb7c41d9b,
+        type: 2}
+      propertyPath: colorToChange.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349156355770404, guid: 74ba5cc546a448547af9e16fb7c41d9b,
+        type: 2}
+      propertyPath: colorToChange.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74ba5cc546a448547af9e16fb7c41d9b, type: 2}
   m_IsPrefabParent: 0
@@ -908,6 +918,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1701026616812778, guid: 063a23adcf6e50046b4fc6fc41bf0479, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 063a23adcf6e50046b4fc6fc41bf0479, type: 2}
   m_IsPrefabParent: 0
@@ -1157,7 +1171,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.68243647, g: 0.9044118, b: 0.61180794, a: 0}
+  m_BackGroundColor: {r: 0.5811807, g: 0.9117647, b: 0.4759948, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1358,6 +1372,10 @@ Prefab:
     - target: {fileID: 4232824728553010, guid: 063a23adcf6e50046b4fc6fc41bf0479, type: 2}
       propertyPath: m_LocalScale.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701026616812778, guid: 063a23adcf6e50046b4fc6fc41bf0479, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 063a23adcf6e50046b4fc6fc41bf0479, type: 2}

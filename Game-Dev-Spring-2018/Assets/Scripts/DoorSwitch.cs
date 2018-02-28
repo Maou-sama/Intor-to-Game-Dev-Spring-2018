@@ -4,6 +4,7 @@ using System.Collections;
 public class DoorSwitch : MonoBehaviour
 {
     public GameObject door;
+    public Color colorToChange;
     public bool openDoor;
     public bool moveDown;
 
@@ -17,7 +18,7 @@ public class DoorSwitch : MonoBehaviour
     {
         if (openDoor)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1);
+            gameObject.GetComponent<SpriteRenderer>().color = colorToChange;
             Vector2 doorPosition = door.transform.position;
             if (moveDown)
             {
