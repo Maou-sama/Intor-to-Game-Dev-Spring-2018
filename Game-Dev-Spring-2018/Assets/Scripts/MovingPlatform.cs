@@ -4,16 +4,18 @@ using System.Collections;
 public class MovingPlatform : MonoBehaviour
 {
     public bool startMoving;
+    public bool pause;
     public float speed;
     public bool moveUp;
     public float moveDistance;
+    public float waitTime;
 
     private float baseY;
-
     // Use this for initialization
     void Start()
     {
         startMoving = false;
+        pause = false;
         baseY = transform.position.y;
     }
 
@@ -22,31 +24,39 @@ public class MovingPlatform : MonoBehaviour
     {
         if (startMoving)
         {
-            if (transform.position.y <= baseY)
+            if (!pause)
             {
-                moveUp = true;
-            }
-            if (transform.position.y >= baseY + moveDistance)
-            {
-                moveUp = false;
+                if (moveUp)
+                {
+                    transform.Translate(new Vector2(0, speed));
+                }
+                else
+                {
+                    transform.Translate(new Vector2(0, -speed));
+                }
             }
 
-            if (moveUp)
+            if (transform.position.y < baseY && pause == false)
             {
-                transform.Translate(new Vector2(0, speed));
+                transform.position = new Vector2(transform.position.x, baseY);
+                pause = true;
+                StartCoroutine(ChangeDirection());
             }
-            else
+            if (transform.position.y > baseY + moveDistance && pause == false)
             {
-                transform.Translate(new Vector2(0, -speed));
+                transform.position = new Vector2(transform.position.x, baseY + moveDistance);
+                pause = true;
+                StartCoroutine(ChangeDirection());
             }
+
+            
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    IEnumerator ChangeDirection()
     {
-        if(collision.gameObject.tag == "Player")
-        {
-            startMoving = true;
-        }
+        yield return new WaitForSeconds(waitTime);
+        moveUp = moveUp ? false : true;
+        pause = false;
     }
 }

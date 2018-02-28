@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114639703445018360}
   m_Layer: 9
   m_Name: MovingPlatform
-  m_TagString: Ground
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,8 +80,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMoving: 0
   speed: 0.2
-  moveUp: 0
+  moveUp: 1
   moveDistance: 28
+  waitTime: 2
 --- !u!212 &212048812175574964
 SpriteRenderer:
   m_ObjectHideFlags: 1

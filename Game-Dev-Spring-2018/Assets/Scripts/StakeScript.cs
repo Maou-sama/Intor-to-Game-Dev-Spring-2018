@@ -3,6 +3,7 @@ using System.Collections;
 
 public class StakeScript : MonoBehaviour
 {
+    public float moveAmount;
 
     private Vector2 originalPosition;
     private Vector2 laterPosition;
@@ -11,7 +12,7 @@ public class StakeScript : MonoBehaviour
     void Start()
     {
         originalPosition = transform.position;
-        laterPosition = originalPosition + new Vector2(0, -1.3f);
+        laterPosition = originalPosition + new Vector2(0, -1.3f);   
     }
 
     // Update is called once per frame
