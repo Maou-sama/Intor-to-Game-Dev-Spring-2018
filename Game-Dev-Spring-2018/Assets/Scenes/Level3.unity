@@ -1513,22 +1513,6 @@ Prefab:
       propertyPath: path.Array.data[3]
       value: 
       objectReference: {fileID: 583341105}
-    - target: {fileID: 4959759016815108, guid: 01d03562f47742c47b18f0aadd9abe9a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959759016815108, guid: 01d03562f47742c47b18f0aadd9abe9a, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959759016815108, guid: 01d03562f47742c47b18f0aadd9abe9a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453127896386064, guid: 01d03562f47742c47b18f0aadd9abe9a, type: 2}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d03562f47742c47b18f0aadd9abe9a, type: 2}
   m_IsPrefabParent: 0
