@@ -4,6 +4,7 @@ using System.Collections;
 public class BulletShooter : MonoBehaviour
 {
     public GameObject bullet;
+    public AudioClip shootSound;
     public float destroyTime;
     public float bulletSpeed;
     public float spawnTime;
@@ -27,10 +28,11 @@ public class BulletShooter : MonoBehaviour
 
     IEnumerator ShootBullet(GameObject bullet)
     {
+        yield return new WaitForSeconds(spawnTime);
         GameObject clone = Instantiate(bullet, transform.position, Quaternion.identity);
         clone.GetComponent<Bullet>().destroyTime = destroyTime;
         clone.GetComponent<Bullet>().bulletSpeed = bulletSpeed;
-        yield return new WaitForSeconds(spawnTime);
+        Sound.me.PlaySound(shootSound, 0.25f, 2.0f, 0.0f);
         StartCoroutine(ShootBullet(bullet));
     }
 }

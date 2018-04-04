@@ -38,19 +38,22 @@ public class MovingPlatform : MonoBehaviour
 
             if (transform.position.y < baseY && pause == false)
             {
-                transform.position = new Vector2(transform.position.x, baseY);
-                pause = true;
-                StartCoroutine(ChangeDirection());
+                FixPositionAndChangeDirection(baseY);
             }
             if (transform.position.y > baseY + moveDistance && pause == false)
             {
-                transform.position = new Vector2(transform.position.x, baseY + moveDistance);
-                pause = true;
-                StartCoroutine(ChangeDirection());
+                FixPositionAndChangeDirection(baseY + moveDistance);
             }
 
             
         }
+    }
+
+    void FixPositionAndChangeDirection(float positionY)
+    {
+        transform.position = new Vector2(transform.position.x, positionY);
+        pause = true;
+        StartCoroutine(ChangeDirection());
     }
 
     IEnumerator ChangeDirection()

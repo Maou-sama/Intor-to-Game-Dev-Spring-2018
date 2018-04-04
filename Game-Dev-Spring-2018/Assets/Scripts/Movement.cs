@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     public LayerMask groundLayer;
     public BoxCollider2D c2d;
 
+    public AudioClip jumpSound;
     public Sprite[] sprites;
     public float speed;
     public float jumpForce;
@@ -87,6 +88,7 @@ public class Movement : MonoBehaviour
         rb2d.velocity = (crouching ? new Vector2(Input.GetAxis("Horizontal") * speed * crouchSpeed, rb2d.velocity.y) : new Vector2(Input.GetAxis("Horizontal") * speed, rb2d.velocity.y));
         if (onGround && Input.GetKeyDown(KeyCode.Space))
         {
+            Sound.me.PlaySound(jumpSound);
             sr.sprite = sprites[2];
             rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
@@ -113,11 +115,6 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Obstacles")
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
         if (collision.gameObject.tag == "MovingPlatform")
         {
             collision.gameObject.GetComponent<MovingPlatform>().startMoving = true;
@@ -135,7 +132,12 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Obstacles")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (collision.gameObject.tag == "Bullet")
         {
             if (!crouching)
             {
