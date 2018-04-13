@@ -30,8 +30,9 @@ public class BulletShooter : MonoBehaviour
     {
         yield return new WaitForSeconds(spawnTime);
         GameObject clone = Instantiate(bullet, transform.position, Quaternion.identity);
-        clone.GetComponent<Bullet>().destroyTime = destroyTime;
-        clone.GetComponent<Bullet>().bulletSpeed = bulletSpeed;
+        Bullet cloneBullet = clone.GetComponent<Bullet>();
+        cloneBullet.destroyTime = destroyTime;
+        cloneBullet.bulletSpeed = bulletSpeed;
         Sound.me.PlaySound(shootSound, 0.25f, 2.0f, 0.0f);
         StartCoroutine(ShootBullet(bullet));
     }

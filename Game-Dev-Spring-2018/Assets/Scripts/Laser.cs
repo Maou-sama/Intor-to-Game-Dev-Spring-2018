@@ -41,7 +41,8 @@ public class Laser : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        hitPosition.position = hit.point;
+        if(hit != false)
+            hitPosition.position = hit.point;
         lr.SetPosition(0, transform.position);
         lr.SetPosition(1, hitPosition.position);
     }

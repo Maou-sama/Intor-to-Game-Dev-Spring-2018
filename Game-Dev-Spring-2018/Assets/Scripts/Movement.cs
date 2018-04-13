@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     public float jumpForce;
     public bool onGround;
     public bool crouching;
+
     private bool canCrouch = true;
 
     private Vector3 standColliderSize;
@@ -132,13 +133,6 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
-        {
-            if (!crouching)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-        }
         if(collision.gameObject.tag == "Enemy")
         {
             if (!crouching)
@@ -147,4 +141,5 @@ public class Movement : MonoBehaviour
             }
         }
     }
+    
 }

@@ -150,6 +150,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   c2d: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: fcdbe3ec005e5f64482c27b0938139ae, type: 3}
   sprites:
   - {fileID: 21300000, guid: 8fb98a6035269e64a998f9b56828fc4f, type: 3}
   - {fileID: 21300000, guid: d40c191aa46654db7a426d6a1fa3aa30, type: 3}
