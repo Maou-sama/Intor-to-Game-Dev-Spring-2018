@@ -12,9 +12,10 @@ public class Movement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
     public BoxCollider2D c2d;
+    public Animator anim;
 
     public AudioClip jumpSound;
-    public Sprite[] sprites;
+    //public Sprite[] sprites;
     public float speed;
     public float jumpForce;
     public bool onGround;
@@ -31,17 +32,18 @@ public class Movement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         c2d = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
         //standColliderSize = c2d.transform.localScale;
         //crouchColliderSize = new Vector3(c2d.transform.localScale.x * 2.0f, c2d.transform.localScale.y * 0.5f, c2d.transform.localScale.z);
         onGround = false;
-        sr.sprite = sprites[0];
+        //sr.sprite = sprites[0];
         crouching = false;
     }
 
     void FixedUpdate()
     {
         onGround = false;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.2f, groundLayer);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.135f, groundLayer);
         if(colliders.Length >= 1)
         {
             onGround = true;
@@ -65,32 +67,44 @@ public class Movement : MonoBehaviour
         //Change to crouch animation if pressed C
         if (onGround)
         {
+            anim.SetBool("Jump", false);
             if (Input.GetKey(KeyCode.C) && canCrouch)
             {
                 StartCoroutine(CrouchTimer());
-                sr.sprite = sprites[1];
+                //sr.sprite = sprites[1];
                 crouching = true;
             }
 
             else
             {
                 canCrouch = true;
-                sr.sprite = sprites[0];
+                //sr.sprite = sprites[0];
                 crouching = false;
             }
         }
 
         else
         {
-            sr.sprite = sprites[2];
+            anim.SetBool("Jump", true);
             crouching = false;
         }
 
         rb2d.velocity = (crouching ? new Vector2(Input.GetAxis("Horizontal") * speed * crouchSpeed, rb2d.velocity.y) : new Vector2(Input.GetAxis("Horizontal") * speed, rb2d.velocity.y));
+
+        if(rb2d.velocity != new Vector2(0, 0))
+        {
+            anim.SetBool("Moving", true);
+        }
+
+        else
+        {
+            anim.SetBool("Moving", false);
+        }
+
         if (onGround && Input.GetKeyDown(KeyCode.Space))
         {
             Sound.me.PlaySound(jumpSound);
-            sr.sprite = sprites[2];
+            anim.SetBool("Jump", true);
             rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
 

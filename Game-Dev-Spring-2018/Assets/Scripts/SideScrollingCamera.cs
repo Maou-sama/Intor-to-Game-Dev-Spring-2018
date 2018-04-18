@@ -6,14 +6,14 @@ public class SideScrollingCamera: MonoBehaviour
 
     public GameObject player;
     public Vector3 originalTransform;
-    public Vector3 zoomTransform;
-    public bool zoomOut;
+    //public Vector3 zoomTransform;
+    //public bool zoomOut;
 
     private void Start()
     {
         originalTransform = transform.position;
-        zoomTransform = new Vector3(originalTransform.x, originalTransform.y, originalTransform.z * 2);
-        zoomOut = false;
+        //zoomTransform = new Vector3(originalTransform.x, originalTransform.y, originalTransform.z * 2);
+        //zoomOut = false;
     }
 
     // Update is called once per frame
@@ -21,14 +21,14 @@ public class SideScrollingCamera: MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Z))
         {
-            transform.position = zoomTransform;
-            zoomOut = true;
+            //transform.position = zoomTransform;
+            //zoomOut = true;
         }
 
         else
         {
-            transform.position = originalTransform;
-            zoomOut = false;
+            //transform.position = originalTransform;
+            //zoomOut = false;
         }
         
         if (player.transform.position.y > -2.6f)

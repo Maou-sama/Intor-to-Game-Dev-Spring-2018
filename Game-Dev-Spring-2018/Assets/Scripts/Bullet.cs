@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
         {
             if (!collision.gameObject.GetComponent<Movement>().crouching)
             {
-                collision.gameObject.SetActive(false);
+                collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 Camera.main.gameObject.GetComponent<ShakeScreen>().Screenshake(0.8f, 1.6f);
                 StartCoroutine(Die());
             }

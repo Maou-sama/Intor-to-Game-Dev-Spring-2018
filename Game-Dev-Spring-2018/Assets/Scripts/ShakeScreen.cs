@@ -13,8 +13,13 @@ public class ShakeScreen : MonoBehaviour {
 	// an animation curve that we'll use to taper off the screen shake magnitude towards the end of the duration
 	public AnimationCurve curve;
 
-	void Update () {
-        cameraCenterPos = transform.position;
+    private void Start()
+    {
+        cameraCenterPos = transform.localPosition;
+    }
+
+    void Update () {
+        
         transform.localPosition = cameraCenterPos + AddScreenshake();
 	}
 
