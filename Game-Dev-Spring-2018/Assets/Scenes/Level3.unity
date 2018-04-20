@@ -2188,11 +2188,6 @@ Prefab:
       propertyPath: m_Name
       value: MovingPlatform2
       objectReference: {fileID: 0}
-    - target: {fileID: 114639703445018360, guid: e49d005c677d21c48abf9b710035dc9b,
-        type: 2}
-      propertyPath: moveDistance
-      value: 24
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e49d005c677d21c48abf9b710035dc9b, type: 2}
   m_IsPrefabParent: 0

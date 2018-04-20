@@ -9,6 +9,10 @@ public class Laser : MonoBehaviour
     public LayerMask layerToDetect;
     public bool off;
     public float timeOnOff;
+
+    public ParticleSystem ps;
+    public ParticleSystem ps2;
+
     // Use this for initialization
 
     
@@ -17,7 +21,7 @@ public class Laser : MonoBehaviour
         lr = GetComponent<LineRenderer>();
         lr.enabled = true;
         lr.useWorldSpace = true;
-        StartCoroutine(TurnOnOff());
+        StartCoroutine(TurnOff());
     }
 
     // Update is called once per frame
@@ -47,10 +51,23 @@ public class Laser : MonoBehaviour
         lr.SetPosition(1, hitPosition.position);
     }
     
-    IEnumerator TurnOnOff()
+    IEnumerator TurnOn()
+    {
+        yield return new WaitForSeconds(timeOnOff / 3);
+        ps.Play();
+        yield return new WaitForSeconds(timeOnOff / 3);
+        ps2.Play();
+        yield return new WaitForSeconds(timeOnOff / 3);
+        off = false;
+        ps.Stop();
+        ps2.Stop();
+        StartCoroutine(TurnOff());
+    }
+
+    IEnumerator TurnOff()
     {
         yield return new WaitForSeconds(timeOnOff);
-        off = !off;
-        StartCoroutine(TurnOnOff());
+        off = true;
+        StartCoroutine(TurnOn());
     }
 }

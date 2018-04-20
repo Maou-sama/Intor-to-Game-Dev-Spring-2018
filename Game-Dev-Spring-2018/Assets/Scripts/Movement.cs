@@ -8,8 +8,10 @@ public class Movement : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private SpriteRenderer sr;
+    private Collider2D[] colliders;
+
     [Range(0, 1)] public float crouchSpeed = 0.5f;
-    public Transform groundCheck;
+    public Transform[] groundChecks;
     public LayerMask groundLayer;
     public BoxCollider2D c2d;
     public Animator anim;
@@ -43,10 +45,13 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         onGround = false;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.135f, groundLayer);
-        if(colliders.Length >= 1)
+        foreach (Transform groundCheck in groundChecks)
         {
-            onGround = true;
+            colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.135f, groundLayer);
+            if (colliders.Length >= 1)
+            {
+                onGround = true;
+            }
         }
     }
 
