@@ -6,7 +6,6 @@ public class Bullet : MonoBehaviour
 {
     public float bulletSpeed;
     public float destroyTime;
-    public float dieTimer;
 
     void Start()
     {
@@ -29,18 +28,9 @@ public class Bullet : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            if (!collision.gameObject.GetComponent<Movement>().crouching)
-            {
-                collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                Camera.main.gameObject.GetComponent<ShakeScreen>().Screenshake(0.8f, 1.6f);
-                StartCoroutine(Die());
-            }
+            collision.gameObject.GetComponent<Movement>().Die();
         }
     }
 
-    IEnumerator Die()
-    {
-        yield return new WaitForSeconds(dieTimer);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    
 }

@@ -22,11 +22,11 @@ public class DoorSwitch : MonoBehaviour
             Vector2 doorPosition = door.transform.position;
             if (moveDown)
             {
-                LeanTween.move(door, doorPosition + new Vector2(0, -5), 3.0f);
+                LeanTween.move(door, doorPosition + new Vector2(0, -door.transform.localScale.x), 3.0f);
             }
             else
             {
-                LeanTween.move(door, doorPosition + new Vector2(0, 5), 3.0f);
+                LeanTween.move(door, doorPosition + new Vector2(0, door.transform.localScale.x), 3.0f);
             }
             openDoor = false;
         }

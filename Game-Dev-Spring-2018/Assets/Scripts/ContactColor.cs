@@ -17,10 +17,8 @@ public class ContactColor : MonoBehaviour {
 
 	void Start () {
 
-		//find the parent's sprite
-		foreach (Transform t in transform.parent){
-			if (t.name == "Sprite") sprite = t.gameObject.GetComponent<SpriteRenderer>();
-		}
+        //find the parent's sprite
+        sprite = GetComponent<SpriteRenderer>();
 		time = changeTime;
 	}
 	

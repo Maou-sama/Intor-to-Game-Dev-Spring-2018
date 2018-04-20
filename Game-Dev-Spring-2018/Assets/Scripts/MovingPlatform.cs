@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MovingPlatform : MonoBehaviour
 {
+    public ContactColor cc;
+
     public bool startMoving;
     public bool pause;
     public float speed;
@@ -17,6 +19,7 @@ public class MovingPlatform : MonoBehaviour
         startMoving = false;
         pause = false;
         baseY = transform.position.y;
+        cc = GetComponent<ContactColor>();
     }
 
     // Update is called once per frame
@@ -61,5 +64,23 @@ public class MovingPlatform : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         moveUp = moveUp ? false : true;
         pause = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            cc.BeginContact(gameObject.transform.position);
+            startMoving = true;
+            collision.gameObject.transform.parent = gameObject.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.transform.parent = null;
+        }
     }
 }

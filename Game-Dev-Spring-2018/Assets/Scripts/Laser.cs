@@ -43,7 +43,7 @@ public class Laser : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, Mathf.Infinity, layerToDetect);
         if(hit.collider.tag == "Player")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            hit.collider.gameObject.GetComponent<Movement>().Die();
         }
         if(hit != false)
             hitPosition.position = hit.point;

@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4573162223006122}
   - component: {fileID: 212749060148476226}
   - component: {fileID: 61400506199675854}
+  - component: {fileID: 114428912187542776}
+  - component: {fileID: 114836064822857746}
   m_Layer: 9
   m_Name: Platform
   m_TagString: Ground
@@ -35,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1570730471208332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.99, y: 0.060561, z: 0}
+  m_LocalPosition: {x: -11.04, y: 0.5, z: 0}
   m_LocalScale: {x: 20, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -66,6 +68,59 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &114428912187542776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1570730471208332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 359c7f9fcc6375a418e70d8dc11c431d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114836064822857746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1570730471208332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6dfe858d0e94ddf8b2094b86ccf217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeTime: 0.75
+  colorGradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 1, b: 0, a: 1}
+    key1: {r: 0, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 1, a: 1}
+    key3: {r: 1, g: 0, b: 1, a: 0}
+    key4: {r: 1, g: 0, b: 0, a: 0}
+    key5: {r: 1, g: 1, b: 0, a: 0}
+    key6: {r: 0, g: 1, b: 0, a: 0}
+    key7: {r: 0, g: 1, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 10918
+    ctime2: 21836
+    ctime3: 32754
+    ctime4: 43673
+    ctime5: 54591
+    ctime6: 65509
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 7
+    m_NumAlphaKeys: 2
+  changeColorOnGameOver: 0
 --- !u!212 &212749060148476226
 SpriteRenderer:
   m_ObjectHideFlags: 1
