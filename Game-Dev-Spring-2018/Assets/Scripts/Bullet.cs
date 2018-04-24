@@ -4,21 +4,32 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour
 {
-    public float bulletSpeed;
-    public float destroyTime;
+    [Header("Bullet Properties")]
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float destroyTime;
 
-    void Start()
+    private void Start()
     {
         StartCoroutine(DeleteSelf());
     }
 
+    public void SetBulletSpeed(float speed)
+    {
+        bulletSpeed = speed;
+    }
+
+    public void SetBulletDestroyTimer(float time)
+    {
+        destroyTime = time;
+    }
+
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         transform.Translate(new Vector2(bulletSpeed, 0f));
     }
 
-    IEnumerator DeleteSelf()
+    private IEnumerator DeleteSelf()
     {
         yield return new WaitForSeconds(destroyTime);
         Destroy(gameObject);

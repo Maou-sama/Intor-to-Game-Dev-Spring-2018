@@ -57,7 +57,6 @@ GameObject:
   - component: {fileID: 20645070452790456}
   - component: {fileID: 124736176307455834}
   - component: {fileID: 81285227881160552}
-  - component: {fileID: 114161114874772486}
   - component: {fileID: 114871903970701092}
   m_Layer: 0
   m_Name: Main Camera
@@ -127,7 +126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1253348925849472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.21, y: -1.91, z: 0}
+  m_LocalPosition: {x: -16.6, y: -1.375, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children:
   - {fileID: 4388572039192198}
@@ -241,19 +240,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114161114874772486
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1353796613361552}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 165420c601eb2b14e9a61cbf198fa3db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1253348925849472}
-  originalTransform: {x: 0, y: 0, z: 0}
 --- !u!114 &114555177616960388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,20 +251,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9e11a387362ca4cafd8a27ea8efa0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crouchSpeed: 0.5
   groundChecks:
   - {fileID: 4267505572279654}
   - {fileID: 4502428910396022}
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  c2d: {fileID: 0}
-  anim: {fileID: 0}
   jumpSound: {fileID: 8300000, guid: fcdbe3ec005e5f64482c27b0938139ae, type: 3}
   speed: 20
   jumpForce: 24
-  onGround: 0
-  crouching: 0
 --- !u!114 &114871903970701092
 MonoBehaviour:
   m_ObjectHideFlags: 1

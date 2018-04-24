@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+//Credit to Professor Burgess
+//A simple script for shaking screen
+
 public class ShakeScreen : MonoBehaviour {
 
 	public Vector3 cameraCenterPos;

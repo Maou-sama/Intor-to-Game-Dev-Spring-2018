@@ -4,6 +4,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    //Making the Game Manager a singleton
     public static GameManager _instance;
 
     private void Awake()
@@ -18,8 +19,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    // Just for debugging purpose. Allow user to switch between levels using key combination
+    private void Update()
     {
         if (SceneManager.GetActiveScene().name == "GameOver")
         {
@@ -51,13 +52,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void LoadNextScene()
+    public void LoadNextScene()
     {
         Debug.Log(Time.timeSinceLevelLoad);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    void LoadPreviousScene()
+    public void LoadPreviousScene()
     {
         Debug.Log(Time.timeSinceLevelLoad);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);

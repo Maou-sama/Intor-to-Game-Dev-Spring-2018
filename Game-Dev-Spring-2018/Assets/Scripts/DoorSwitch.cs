@@ -3,23 +3,26 @@ using System.Collections;
 
 public class DoorSwitch : MonoBehaviour
 {
-    public GameObject door;
-    public Color colorToChange;
-    public bool openDoor;
-    public bool moveDown;
+    [Header("Door Switch's Properties")]
+    [SerializeField] private GameObject door;
+    [SerializeField] private Color colorToChange;
+    [SerializeField] private bool moveDown;
+
+    private bool openDoor;
 
     private void Start()
     {
         openDoor = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    //Move door up/down depends on the direction specified
+    private void Update()
     {
         if (openDoor)
         {
             gameObject.GetComponent<SpriteRenderer>().color = colorToChange;
             Vector2 doorPosition = door.transform.position;
+
             if (moveDown)
             {
                 LeanTween.move(door, doorPosition + new Vector2(0, -door.transform.localScale.x), 3.0f);
@@ -28,6 +31,7 @@ public class DoorSwitch : MonoBehaviour
             {
                 LeanTween.move(door, doorPosition + new Vector2(0, door.transform.localScale.x), 3.0f);
             }
+
             openDoor = false;
         }
     }

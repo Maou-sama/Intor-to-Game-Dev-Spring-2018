@@ -2,6 +2,8 @@
 using System.Collections;
 
 //This script changes the color of the sprite according to a gradient, when something touches it.
+//Credit to Professor Bennett Foddy
+
 public class ContactColor : MonoBehaviour {
 	SpriteRenderer sprite;
 	float time; //timer variable for tweening colors

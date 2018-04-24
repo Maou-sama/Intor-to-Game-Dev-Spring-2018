@@ -3,34 +3,40 @@ using System.Collections;
 
 public class PathFinding : MonoBehaviour
 {
-    public Transform[] path;
-    public float speed = 5.0f;
-    public float reachDist = 1.0f;
-    public int currentPoint = 0;
-    public float rotateTime;
+    [Header("Path Finding Object's Properties")]
+    [SerializeField] private Transform[] path;
+    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float reachDist = 1.0f;
+
+    private float rotateTime = 0.1f;
+    private int currentPoint = 0;
+    
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //Vector3 dir = path[currentPoint].position - transform.position;
+        //Rotate according to the direction its traveling
         float rotateAngle = Vector3.SignedAngle(path[currentPoint].position - transform.position, Vector3.up, Vector3.forward);
-
         LeanTween.rotateZ(gameObject, -rotateAngle, rotateTime);
 
+        //Find the distance from the next point to the object and lerp to there
         float dist = Vector3.Distance(path[currentPoint].position, transform.position);
         transform.position = Vector3.Lerp(transform.position, path[currentPoint].position, Time.deltaTime * speed);
 
+        //Change the current point to the next one if object within the reach distance of the point
         if (dist <= reachDist)
         {
             currentPoint++;
         }
 
+        //Loop back to the first point
         if(currentPoint >= path.Length)
         {
             currentPoint = 0;
         }
     }
 
+    //Draw on the gizmo the path of the object
     private void OnDrawGizmos()
     {
         if (path.Length > 0)

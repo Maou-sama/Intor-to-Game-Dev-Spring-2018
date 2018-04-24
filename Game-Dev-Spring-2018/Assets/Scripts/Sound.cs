@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Credit to Professor Burgess
+//A script to create audio sources and play sound
+
 public class Sound : MonoBehaviour {
 	// if a variable is static, there can be only one.
 	public static Sound me = null;

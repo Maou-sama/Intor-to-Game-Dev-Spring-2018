@@ -3,27 +3,27 @@ using System.Collections;
 
 public class MovingPlatform : MonoBehaviour
 {
-    public ContactColor cc;
+    private ContactColor cc;
 
-    public bool startMoving;
-    public bool pause;
-    public float speed;
-    public bool moveUp;
-    public float moveDistance;
-    public float waitTime;
+    [Header("Moving Platform's Properties")]
+    [SerializeField] private float speed;
+    [SerializeField] private float moveDistance;
+    [SerializeField] private float waitTime;
 
+    private bool moveUp = true;
+    private bool startMoving = false;
+    private bool pause = false;
     private float baseY;
+
     // Use this for initialization
-    void Start()
+    private void Start()
     {
-        startMoving = false;
-        pause = false;
         baseY = transform.position.y;
         cc = GetComponent<ContactColor>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Move the platform up and down and change direction whenever hitting the highest/lowest point
+    private void Update()
     {
         if (startMoving)
         {
@@ -38,7 +38,6 @@ public class MovingPlatform : MonoBehaviour
                     transform.Translate(new Vector2(0, -speed));
                 }
             }
-
             if (transform.position.y < baseY && pause == false)
             {
                 FixPositionAndChangeDirection(baseY);
@@ -47,19 +46,19 @@ public class MovingPlatform : MonoBehaviour
             {
                 FixPositionAndChangeDirection(baseY + moveDistance);
             }
-
-            
         }
     }
 
-    void FixPositionAndChangeDirection(float positionY)
+    //Clamp the platform to the right position after hitting the highest/lowest point then change direciton
+    private void FixPositionAndChangeDirection(float positionY)
     {
         transform.position = new Vector2(transform.position.x, positionY);
         pause = true;
         StartCoroutine(ChangeDirection());
     }
 
-    IEnumerator ChangeDirection()
+    //Pause for a certain amount of time before changing direction
+    private IEnumerator ChangeDirection()
     {
         yield return new WaitForSeconds(waitTime);
         moveUp = moveUp ? false : true;

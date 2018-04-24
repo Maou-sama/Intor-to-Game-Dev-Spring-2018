@@ -3,21 +3,24 @@ using System.Collections;
 
 public class BulletShooter : MonoBehaviour
 {
-    public GameObject bullet;
-    public AudioClip shootSound;
-    public float destroyTime;
-    public float bulletSpeed;
-    public float spawnTime;
+
+    [Header("Bullet Shooter's Properties")]
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private float destroyTime;
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float spawnTime;
 
     private bool startShooting;
+
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         startShooting = true;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (startShooting)
         {
@@ -26,14 +29,19 @@ public class BulletShooter : MonoBehaviour
         }
     }
 
-    IEnumerator ShootBullet(GameObject bullet)
+    private IEnumerator ShootBullet(GameObject bullet)
     {
+        //Clone a bullet after a certain amount of time at the shooter position
         yield return new WaitForSeconds(spawnTime);
         GameObject clone = Instantiate(bullet, transform.position, Quaternion.identity);
         Bullet cloneBullet = clone.GetComponent<Bullet>();
-        cloneBullet.destroyTime = destroyTime;
-        cloneBullet.bulletSpeed = bulletSpeed;
+        cloneBullet.SetBulletDestroyTimer(destroyTime);
+        cloneBullet.SetBulletSpeed(bulletSpeed);
+
+        //Play the sound of bullet shot
         Sound.me.PlaySound(shootSound, 0.25f, 2.0f, 0.0f);
+
+        //Start the couroutine again to loop shooting
         StartCoroutine(ShootBullet(bullet));
     }
 }

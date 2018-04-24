@@ -5,18 +5,20 @@ using System.Collections;
 public class Laser : MonoBehaviour
 {
     private LineRenderer lr;
-    public Transform hitPosition;
-    public LayerMask layerToDetect;
-    public bool off;
-    public float timeOnOff;
 
-    public ParticleSystem ps;
-    public ParticleSystem ps2;
+    [Header("Components Used For Making Laser")]
+    [SerializeField] private Transform hitPosition;
+    [SerializeField] private LayerMask layerToDetect;
+    [SerializeField] private ParticleSystem ps;
+    [SerializeField] private ParticleSystem ps2;
+
+    [Header("Laser's Properties")]
+    [SerializeField] private float timeOnOff;
+
+    private bool off;
 
     // Use this for initialization
-
-    
-    void Start()
+    private void Start()
     {
         lr = GetComponent<LineRenderer>();
         lr.enabled = true;
@@ -25,7 +27,7 @@ public class Laser : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!off)
         {
@@ -38,20 +40,30 @@ public class Laser : MonoBehaviour
         }
     }
 
+    //Draw laser by casting a ray from the base of the laser to any collider within the layer
+    //Set the hit point to the point of collision and draw a line
+    //If the raycast hit player then player die
     void DrawLaser()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, Mathf.Infinity, layerToDetect);
+
         if(hit.collider.tag == "Player")
         {
             hit.collider.gameObject.GetComponent<Movement>().Die();
         }
-        if(hit != false)
+
+        if (hit != false)
+        {
             hitPosition.position = hit.point;
+        }
+
         lr.SetPosition(0, transform.position);
         lr.SetPosition(1, hitPosition.position);
     }
     
-    IEnumerator TurnOn()
+    //Play a particle system every 1/3 of the time require to shoot to imitate charging
+    //Stop the particle systmes when the laser shoot
+    private IEnumerator TurnOn()
     {
         yield return new WaitForSeconds(timeOnOff / 3);
         ps.Play();
@@ -64,7 +76,7 @@ public class Laser : MonoBehaviour
         StartCoroutine(TurnOff());
     }
 
-    IEnumerator TurnOff()
+    private IEnumerator TurnOff()
     {
         yield return new WaitForSeconds(timeOnOff);
         off = true;

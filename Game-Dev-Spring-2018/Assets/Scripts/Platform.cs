@@ -6,7 +6,7 @@ public class Platform : MonoBehaviour
     private ContactColor cc;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         cc = GetComponent<ContactColor>();
 
