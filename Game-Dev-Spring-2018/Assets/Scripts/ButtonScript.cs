@@ -5,6 +5,7 @@ using System.Collections;
 public class ButtonScript : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject helpPanel;
 
     public void Reload()
     {
@@ -16,6 +17,16 @@ public class ButtonScript : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Home");
+    }
+
+    public void OpenHelp()
+    {
+        helpPanel.SetActive(true);
+    }
+
+    public void CloseHelp()
+    {
+        helpPanel.SetActive(false);
     }
 
     public void Resume()

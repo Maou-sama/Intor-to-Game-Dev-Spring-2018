@@ -12,6 +12,7 @@ TagManager:
   - MovingPlatform
   - Enemy
   - PauseMenu
+  - GameManager
   layers:
   - Default
   - TransparentFX
