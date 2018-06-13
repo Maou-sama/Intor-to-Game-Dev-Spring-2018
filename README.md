@@ -1,3 +1,15 @@
-# Intro-to-Game-Dev-Spring-2018
+# Robot Boy
 
-In development
+A simple puzzle/platformer 2D game where you will navigate a robot through rooms of destructive obstacles. Game is focused on visual effects so it is very colorful.
+
+## Getting Started
+
+To check out the project please clone the entire project or download as a zip file and open the project folder with Unity.
+
+### Prerequisites
+
+Unity3D
+
+## Authors
+
+* **Minh Cong Ho** - [Maou-sama](https://github.com/Maou-sama)
