@@ -4,7 +4,7 @@ A simple puzzle/platformer 2D game where you will navigate a robot through rooms
 
 ## Getting Started
 
-To check out the project please clone the entire project or download as a zip file and open the Game-Dev-Spring-2018 folder with Unity.
+To check out the project please clone the entire project or download as a zip file.
 
 ### Prerequisites
 
